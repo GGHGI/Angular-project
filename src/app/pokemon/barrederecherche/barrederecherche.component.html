@@ -18,7 +18,8 @@
         type="text"
         placeholder="Rechercher un pokemon"
         aria-label="Rechercher"
-        (input)="search(searchBox?.value ?? '')"
+        (input)="search(searchBox?.value ?? '');"
+        oninput="searchBox_OnInput(this)"
       />
       <ul>
         <li

@@ -10,6 +10,52 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    <script>
+function parents(element, selector) {
+  let pa = element.parentNode;
+  while (!pa.classList.contains(selector)) {
+    pa = pa.parentNode;
+    if (pa.nodeType == 9) {
+      break;
+    }
+  }
+  return pa;
+}
+function filtrerCardByName(searchTerm) {
+  let seq = document.getElementsByClassName("nom");
+  for (var i = 0; i < seq.length; i++) {
+    let pokename = seq.item(i).innerText;
+    let lepar = parents(seq.item(i), 'col');
+    if (lepar.nodeType != 9) {
+      if (pokename.toLowerCase().includes(searchTerm)){
+        lepar.style.display = 'block';
+      } else {
+        lepar.style.display = 'none';
+      }
+    }
+  }
+}
+
+function clearFilter() {
+  let seq = document.getElementsByClassName("nom");
+  for (var i = 0; i < seq.length; i++) {
+    let lepar = parents(seq.item(i), 'col');
+    if (lepar.nodeType != 9) {
+      lepar.style.display = 'block';
+    }
+  }
+}
+
+function searchBox_OnInput(searchBoxInput) {
+  const searchTerm = searchBoxInput.value;
+  if (searchTerm.length < 3) {
+    clearFilter();
+    return;
+  }
+
+filtrerCardByName(searchTerm);	
+}
+  </script>
   </head>
   <body>
     <app-nav></app-nav>
