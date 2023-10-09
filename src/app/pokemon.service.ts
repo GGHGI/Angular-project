@@ -13,7 +13,7 @@ export class PokemonService {
     return this.http
       .get<Pokemon[]>(`https://pokebuildapi.fr/api/v1/pokemon/limit/100`)
       .pipe(
-        tap((pokemonList) => console.table(pokemonList)),
+        tap((pokemonList) => console.log('ok')),
         catchError((error) => {
           console.log(error);
           return of([]);
@@ -25,7 +25,7 @@ export class PokemonService {
     return this.http
       .get<Pokemon>(`https://pokebuildapi.fr/api/v1/pokemon/${pokemonId}`)
       .pipe(
-        tap((pokemon) => console.table(pokemon)),
+        tap((pokemon) => console.log('ok')),
         catchError((error) => {
           console.log(error);
           return of(undefined);
